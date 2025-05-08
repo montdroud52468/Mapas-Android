@@ -74,6 +74,11 @@ class MapsFragment : Fragment() {
         mapView.setBuiltInZoomControls(true)
         mapView.setMultiTouchControls(true)
 
+        val context = requireContext().applicationContext
+        org.osmdroid.config.Configuration.getInstance().load(
+            context,
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(context)
+        )
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         checkLocationPermission()
     }
